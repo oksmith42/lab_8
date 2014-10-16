@@ -44,9 +44,7 @@ bool Maze::traverse(int row, int col)
 
       //DO THIS
       //now it has been tried so mark it as tried
-
-
-
+      maze->setElement(row, col, TRIED);
 
       Sleep(75);  //slow down the maze traversal
       gui->update();
@@ -56,7 +54,7 @@ bool Maze::traverse(int row, int col)
       int height = maze->getNumRows();
       int width = maze->getNumCols();
 
-      if (                     )
+      if (row == height && col == width) // check later
       {
          done = true;
       }
@@ -70,21 +68,20 @@ bool Maze::traverse(int row, int col)
          //IMPORTANT!!
          //don't use row++ or column++ use row + 1 or col + 1, etc.
          //IMPORTANT: make use of the boolean that is returned every time you call traverse
+         
+         done = traverse(row, col+1);
 
+         if (!done) {
+            done = traverse(row, col-1);
+         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+         if (!done) {
+            done = traverse(row+1, col);
+         }
+         
+         if (!done) {
+            done = traverse(row-1, col);
+         }
 
       }
 
@@ -93,18 +90,14 @@ bool Maze::traverse(int row, int col)
       {
          //DO THIS
          //mark the path taken as the solution path
-
-
-
+         maze->setElement(row, col, PATH);
          gui->update();
       }
       //backtrack
       else
       {
          //DO THIS
-
-
-
+         maze->setElement(row, col, BACKTRACK);
          Sleep(75);
          gui->update();
       }

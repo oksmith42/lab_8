@@ -23,7 +23,7 @@ Project: 		$(FILES)
 Maze.o:			Maze.h	Maze.cpp
 			$(COMPILE) Maze.cpp
 
-MazeGUI.o:		MazeGUI.h	MazeGUI.cpp
+MazeGUI.o:		Maze.h	Maze.cpp	MazeGUI.h	MazeGUI.cpp
 			$(COMPILE) MazeGUI.cpp
 
 
